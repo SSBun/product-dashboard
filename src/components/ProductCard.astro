@@ -7,14 +7,18 @@ interface Props {
 
 const { product } = Astro.props;
 const isFramework = product.type === 'framework';
+const isWebsite = product.type === 'website';
+const cardClass = isFramework ? 'framework' : isWebsite ? 'website' : 'app';
+const typeLabel = isFramework ? 'Framework' : isWebsite ? 'Online Tool' : 'App';
+const linkLabel = isFramework ? 'Docs' : isWebsite ? 'Visit' : 'GitHub';
 ---
 
-<div class={`product-card ${isFramework ? 'framework' : 'app'}`}>
+<div class={`product-card ${cardClass}`}>
 	<div class="icon">{product.icon}</div>
 	<div class="content">
 		<div class="header-row">
 			<h2>{product.name}</h2>
-			<span class="type-badge">{isFramework ? 'Framework' : 'App'}</span>
+			<span class="type-badge">{typeLabel}</span>
 		</div>
 		<p class="tagline">{product.tagline}</p>
 		<p class="description">{product.description}</p>
@@ -30,7 +34,7 @@ const isFramework = product.type === 'framework';
 					Details &rarr;
 				</a>
 				<a href={product.link} target="_blank" rel="noopener noreferrer" class="link">
-					{isFramework ? 'Docs' : 'GitHub'}
+					{linkLabel}
 				</a>
 			</div>
 		</div>
@@ -52,6 +56,10 @@ const isFramework = product.type === 'framework';
 	.product-card.framework {
 		background: linear-gradient(145deg, #1a1c23, #23262d);
 		border-left: 4px solid #4f46e5;
+	}
+	.product-card.website {
+		background: linear-gradient(145deg, #0f1729, #23262d);
+		border-left: 4px solid #0ea5e9;
 	}
 	.product-card:hover {
 		transform: translateY(-4px) scale(1.01);
@@ -99,6 +107,11 @@ const isFramework = product.type === 'framework';
 		background: rgba(79, 70, 229, 0.1);
 		color: #818cf8;
 		border: 1px solid rgba(79, 70, 229, 0.2);
+	}
+	.website .type-badge {
+		background: rgba(14, 165, 233, 0.1);
+		color: #38bdf8;
+		border: 1px solid rgba(14, 165, 233, 0.2);
 	}
 	.tagline {
 		font-weight: 600;

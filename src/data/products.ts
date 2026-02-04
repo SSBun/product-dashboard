@@ -7,7 +7,7 @@ export interface Product {
   features: string[];
   link: string;
   category: string;
-  type?: 'app' | 'framework';
+  type?: 'app' | 'framework' | 'website';
   longDescription?: string;
   systemRequirements?: string[];
   useCases?: string[];
@@ -193,15 +193,25 @@ export const products: Product[] = [
   },
   {
     id: "octopustool",
-    name: "OctopusTool",
-    tagline: "TypeScript utility for multi-tasking.",
-    description: "A versatile TypeScript utility designed to handle multiple tasks efficiently. Perfect for complex workflows and automation.",
+    name: "Octopus Dev Tools",
+    tagline: "Developer tools aggregation website built with React, TypeScript & Material-UI.",
+    description: "A collection of developer and media tools that run entirely in your browser. Format JSON, encode/decode, encrypt, process text and images, and more—all locally with no data sent to servers.",
+    longDescription: "Octopus Dev Tools is a developer tools aggregation website built with React, TypeScript, and Material-UI. All tools run in the browser locally, so your data stays private. It offers dark/light theme toggle with a Material Design Dashboard style, responsive layout for mobile and desktop, and global search (Cmd/Ctrl + K) to find tools quickly. The site is powered by Vite for a fast development experience and is fully type-safe with TypeScript.",
     icon: "🐙",
     features: [
-      "Concurrent task execution",
-      "Type-safe configuration",
-      "Extensible architecture",
-      "Lightweight footprint"
+      "Dark/light theme & responsive design — works on mobile and desktop",
+      "Global search (Cmd/Ctrl + K) to find any tool quickly",
+      "JSON tools: format, compress, validate with syntax highlighting",
+      "Encoding & crypto: Base64, URL, Unicode, MD5, SHA, AES, RSA, HMAC",
+      "Text & data: diff, case convert, stats, dedup, password/UUID generator, CSV",
+      "Image, audio & video: compress, convert, crop, waveform, frame extract, GIF",
+      "Network: IP lookup, Ping, HTTP client, URL parse, User-Agent, curl generator",
+      "Runs 100% in the browser — no data sent to servers, privacy-first"
+    ],
+    useCases: [
+      "Developers: JSON formatting, encoding/decoding, crypto, regex, timestamp conversion",
+      "Content creators: image compression, video frame extract, GIF making, audio trim",
+      "Anyone: password generator, UUID generator, QR/barcode, unit conversion"
     ],
     gallery: [
       {
@@ -211,7 +221,7 @@ export const products: Product[] = [
       }
     ],
     link: "https://ssbun.github.io/OctopusTool/",
-    category: "TS Utility",
-    type: 'framework'
+    category: "Online Tool",
+    type: 'website'
   }
 ];

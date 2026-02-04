@@ -11,6 +11,10 @@ export async function getStaticPaths() {
 
 const { product } = Astro.props;
 const isFramework = product.type === 'framework';
+const isWebsite = product.type === 'website';
+const headerClass = isFramework ? 'framework' : isWebsite ? 'website' : 'app';
+const typeLabel = isFramework ? 'Framework' : isWebsite ? 'Online Tool' : 'App';
+const actionLabel = isFramework ? 'View Documentation' : isWebsite ? 'Visit Website' : 'View on GitHub';
 ---
 
 <Layout title={`${product.name} - Product Detail`}>
@@ -19,12 +23,12 @@ const isFramework = product.type === 'framework';
 			<a href="/product-dashboard/">&larr; Back to Dashboard</a>
 		</nav>
 
-		<header class={`detail-header ${isFramework ? 'framework' : 'app'}`}>
+		<header class={`detail-header ${headerClass}`}>
 			<div class="header-content">
 				<div class="icon-large">{product.icon}</div>
 				<div class="title-section">
 					<div class="badge-row">
-						<span class="type-badge">{isFramework ? 'Framework' : 'App'}</span>
+						<span class="type-badge">{typeLabel}</span>
 						<span class="category-badge">{product.category}</span>
 					</div>
 					<h1>{product.name}</h1>
@@ -93,7 +97,7 @@ const isFramework = product.type === 'framework';
 
 			<div class="action-section">
 				<a href={product.link} target="_blank" rel="noopener noreferrer" class="primary-button">
-					{isFramework ? 'View Documentation' : 'View on GitHub'}
+					{actionLabel}
 				</a>
 			</div>
 		</section>
@@ -135,6 +139,10 @@ const isFramework = product.type === 'framework';
 		border-left: 6px solid #4f46e5;
 		background: linear-gradient(145deg, #1a1c23, #23262d);
 	}
+	.detail-header.website {
+		border-left: 6px solid #0ea5e9;
+		background: linear-gradient(145deg, #0f1729, #23262d);
+	}
 	.header-content {
 		display: flex;
 		gap: 2.5rem;
@@ -166,6 +174,11 @@ const isFramework = product.type === 'framework';
 		background: rgba(79, 70, 229, 0.1);
 		color: #818cf8;
 		border: 1px solid rgba(79, 70, 229, 0.2);
+	}
+	.website .type-badge {
+		background: rgba(14, 165, 233, 0.1);
+		color: #38bdf8;
+		border: 1px solid rgba(14, 165, 233, 0.2);
 	}
 	.category-badge {
 		background: rgba(255, 255, 255, 0.05);
