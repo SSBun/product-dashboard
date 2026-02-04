@@ -8,6 +8,9 @@ export interface Product {
   link: string;
   category: string;
   type?: 'app' | 'framework';
+  longDescription?: string;
+  systemRequirements?: string[];
+  useCases?: string[];
 }
 
 export const products: Product[] = [
@@ -16,13 +19,23 @@ export const products: Product[] = [
     name: "Seahorse",
     tagline: "Elegant material collection and management tool for macOS.",
     description: "Seahorse is an all-in-one material collection tool that makes saving inspiration simple and natural. Whether it's web links, images, or text snippets, Seahorse helps you easily save and organize them.",
+    longDescription: "Seahorse is more than just a bookmark manager; it's a versatile material collection tool designed for the modern creative workflow. It supports multiple content types including web links (with automatic title, icon, and preview fetching), images (both local and web-based), and text snippets like code fragments, notes, and ideas. With its intelligent organization system, you can create custom categories with distinct colors and icons, use a flexible tagging system, and mark important items as favorites for quick access.",
     icon: "🌊",
     features: [
-      "Double-click copy to auto-save",
-      "Smart recognition of URLs, text, and images",
-      "Categorization with colors and icons",
-      "Powerful real-time search",
-      "Grid and list views"
+      "Double-click copy to auto-save: quickly copy the same content twice to save automatically",
+      "Paste-to-save: directly paste (⌘V) in the app window to save content",
+      "Smart recognition of URLs, text, and images with automatic metadata fetching",
+      "Categorization with custom colors and icons for visual organization",
+      "Powerful real-time search by title, URL, or text content",
+      "Grid and list views to suit different browsing preferences",
+      "Import browser bookmarks and export data to JSON format"
+    ],
+    systemRequirements: ["macOS 13.0 or later"],
+    useCases: [
+      "Designers: collect design inspiration, reference images, and color schemes",
+      "Developers: save technical documentation, code snippets, and tool links",
+      "Researchers: organize research papers, notes, and data sources",
+      "Content Creators: gather references and inspiration for new projects"
     ],
     link: "https://github.com/SSBun/Seahorse",
     category: "Productivity",
@@ -33,13 +46,22 @@ export const products: Product[] = [
     name: "SeaCrab",
     tagline: "Headless macOS AI application for text refinement.",
     description: "SeaCrab refines selected text using OpenAI-compatible LLM services via customizable global keyboard shortcuts. It runs silently in the menu bar and provides visual feedback near your cursor.",
+    longDescription: "SeaCrab is a headless macOS application designed to integrate AI-powered text refinement directly into your OS-level workflow. By running silently in the menu bar, it stays out of your way until you need it. You can create multiple 'refinement cards', each with its own specific system prompt and global keyboard shortcut. Whether you need to fix grammar, make text more professional, or summarize a paragraph, SeaCrab handles it instantly by capturing your selected text, processing it through your chosen LLM, and replacing it in-place.",
     icon: "🦀",
     features: [
-      "Headless operation in menu bar",
-      "Multiple refinement cards with custom prompts",
-      "Global keyboard shortcut support",
-      "OpenAI-compatible API integration",
-      "Cursor-following loading indicator"
+      "Headless operation in menu bar with a custom, unobtrusive icon",
+      "Multiple refinement cards: create presets with custom prompts and unique shortcuts",
+      "Global keyboard shortcut support for instant access from any application",
+      "OpenAI-compatible API integration: works with OpenAI, Anthropic, or local LLMs like Ollama",
+      "Cursor-following loading indicator: visual feedback that stays with your focus",
+      "Built-in connection testing to verify your API and model configuration"
+    ],
+    systemRequirements: ["macOS 15.2 or later", "Valid API key for an OpenAI-compatible service"],
+    useCases: [
+      "Quick Fix: Grammar and spelling correction via Control + R",
+      "Professional Tone: Transform informal notes into business-ready text",
+      "Concise: Automatically remove fluff and unnecessary words from your writing",
+      "Local AI: Use with LM Studio or Ollama for private, offline text refinement"
     ],
     link: "https://github.com/SSBun/SeaCrab",
     category: "AI Tool",
@@ -50,13 +72,21 @@ export const products: Product[] = [
     name: "Shark",
     tagline: "Manage Cursor IDE workspace files with ease.",
     description: "Shark is a beautiful macOS application for managing Cursor IDE workspace files. Streamline your development workflow by organizing and managing multiple Cursor workspaces with ease.",
+    longDescription: "Shark is a dedicated workspace manager for developers using the Cursor IDE. It provides a clean, native macOS interface to create, import, and organize .code-workspace files. Instead of hunting through your file system, Shark gives you a central hub to manage all your projects. You can add folders to workspaces with simple drag-and-drop, rename workspaces for better organization, and open any project in Cursor with a single double-click. All your workspace data is stored locally, ensuring privacy and speed.",
     icon: "🦈",
     features: [
-      "Create and import .code-workspace files",
-      "Drag-and-drop folder management",
-      "Double-click to open in Cursor",
-      "Native macOS interface",
-      "Automatic saving of workspace changes"
+      "Create and import .code-workspace files with a single click",
+      "Drag-and-drop folder management for rapid workspace configuration",
+      "Double-click to open workspaces directly in Cursor IDE",
+      "Native macOS interface built with SwiftUI for a seamless experience",
+      "Automatic saving: all changes to your workspaces are saved instantly",
+      "Context menu actions: quickly rename, remove, or reveal workspaces in Finder"
+    ],
+    systemRequirements: ["macOS 14.0 or later", "Cursor IDE installed"],
+    useCases: [
+      "Multi-project management: switch between different development environments effortlessly",
+      "Project organization: group related folders into logical workspaces",
+      "Quick access: maintain a list of your most-used workspaces for instant launching"
     ],
     link: "https://github.com/SSBun/Shark",
     category: "Developer Tool",
@@ -67,13 +97,21 @@ export const products: Product[] = [
     name: "AiCash",
     tagline: "Track AI service costs and usage on macOS.",
     description: "A beautiful macOS menu bar app to track AI service costs and usage across multiple providers like Cursor, BLT, and ZenMux. Monitor daily usage and spending in real-time.",
+    longDescription: "AiCash is a specialized utility for power users of AI services who want to keep a close eye on their spending and usage patterns. It integrates directly into the macOS menu bar, providing a real-time overview of your daily costs. The app supports multiple providers including Cursor, BLT, and ZenMux, fetching data directly from their APIs. Beyond simple tracking, AiCash offers detailed usage charts and a comprehensive history of events, all wrapped in a modern, translucent UI that feels right at home on macOS.",
     icon: "💰",
     features: [
-      "Multi-provider support (Cursor, BLT, ZenMux)",
-      "Real-time cost tracking in menu bar",
-      "Detailed usage charts and history",
-      "Modern translucent UI",
-      "Configurable auto-refresh intervals"
+      "Multi-provider support: track costs for Cursor, BLT, and ZenMux in one place",
+      "Real-time cost tracking: see your daily spending directly in the menu bar",
+      "Detailed usage charts: visualize your AI consumption over time",
+      "Modern translucent UI with native macOS blur effects",
+      "Configurable auto-refresh intervals and history range (7-90 days)",
+      "Privacy-focused: all data is stored locally on your Mac"
+    ],
+    systemRequirements: ["macOS 15.0 or later", "Active accounts with supported AI providers"],
+    useCases: [
+      "Cost Monitoring: prevent unexpected bills by tracking AI usage in real-time",
+      "Usage Analysis: understand which AI providers you use most frequently",
+      "Budgeting: set limits and monitor spending across different AI services"
     ],
     link: "https://github.com/SSBun/AiCash",
     category: "Finance/AI",

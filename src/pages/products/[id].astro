@@ -36,7 +36,7 @@ const isFramework = product.type === 'framework';
 		<section class="detail-content">
 			<div class="info-card">
 				<h2>About {product.name}</h2>
-				<p class="description">{product.description}</p>
+				<p class="description">{product.longDescription || product.description}</p>
 			</div>
 
 			<div class="features-section">
@@ -50,6 +50,28 @@ const isFramework = product.type === 'framework';
 					))}
 				</div>
 			</div>
+
+			{product.useCases && product.useCases.length > 0 && (
+				<div class="use-cases-section">
+					<h2>Use Cases</h2>
+					<ul class="use-cases-list">
+						{product.useCases.map((useCase) => (
+							<li>{useCase}</li>
+						))}
+					</ul>
+				</div>
+			)}
+
+			{product.systemRequirements && product.systemRequirements.length > 0 && (
+				<div class="requirements-section">
+					<h2>System Requirements</h2>
+					<ul class="requirements-list">
+						{product.systemRequirements.map((req) => (
+							<li>{req}</li>
+						))}
+					</ul>
+				</div>
+			)}
 
 			<div class="action-section">
 				<a href={product.link} target="_blank" rel="noopener noreferrer" class="primary-button">
@@ -148,7 +170,7 @@ const isFramework = product.type === 'framework';
 		flex-direction: column;
 		gap: 2rem;
 	}
-	.info-card, .features-section {
+	.info-card, .features-section, .use-cases-section, .requirements-section {
 		background: rgba(255, 255, 255, 0.02);
 		padding: 2rem;
 		border-radius: 20px;
@@ -184,6 +206,28 @@ const isFramework = product.type === 'framework';
 		margin: 0;
 		color: #aaa;
 		font-size: 1rem;
+	}
+	.use-cases-list, .requirements-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.use-cases-list li, .requirements-list li {
+		color: #aaa;
+		font-size: 1rem;
+		margin-bottom: 0.75rem;
+		display: flex;
+		gap: 0.75rem;
+		align-items: flex-start;
+	}
+	.use-cases-list li::before {
+		content: "•";
+		color: rgb(var(--accent-light));
+		font-weight: bold;
+	}
+	.requirements-list li::before {
+		content: "💻";
+		font-size: 0.9rem;
 	}
 	.action-section {
 		text-align: center;
