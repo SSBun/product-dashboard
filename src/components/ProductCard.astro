@@ -25,9 +25,14 @@ const isFramework = product.type === 'framework';
 		</ul>
 		<div class="footer-row">
 			<span class="category">{product.category}</span>
-			<a href={product.link} target="_blank" rel="noopener noreferrer" class="link">
-				{isFramework ? 'View Documentation' : 'View on GitHub'} &rarr;
-			</a>
+			<div class="actions">
+				<a href={`/product-dashboard/products/${product.id}`} class="details-link">
+					Details &rarr;
+				</a>
+				<a href={product.link} target="_blank" rel="noopener noreferrer" class="link">
+					{isFramework ? 'Docs' : 'GitHub'}
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -135,10 +140,25 @@ const isFramework = product.type === 'framework';
 		padding-top: 1.5rem;
 		border-top: 1px solid rgba(255, 255, 255, 0.05);
 	}
+	.actions {
+		display: flex;
+		gap: 1.5rem;
+		align-items: center;
+	}
 	.category {
 		font-size: 0.85rem;
 		color: #6b7280;
 		font-style: italic;
+	}
+	.details-link {
+		color: rgb(var(--accent-light));
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 0.95rem;
+		transition: opacity 0.2s;
+	}
+	.details-link:hover {
+		opacity: 0.8;
 	}
 	.link {
 		color: white;

@@ -1,0 +1,227 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { products } from '../../data/products';
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const isFramework = product.type === 'framework';
+---
+
+<Layout title={`${product.name} - Product Detail`}>
+	<main>
+		<nav class="breadcrumb">
+			<a href="/product-dashboard/">&larr; Back to Dashboard</a>
+		</nav>
+
+		<header class={`detail-header ${isFramework ? 'framework' : 'app'}`}>
+			<div class="header-content">
+				<div class="icon-large">{product.icon}</div>
+				<div class="title-section">
+					<div class="badge-row">
+						<span class="type-badge">{isFramework ? 'Framework' : 'App'}</span>
+						<span class="category-badge">{product.category}</span>
+					</div>
+					<h1>{product.name}</h1>
+					<p class="tagline">{product.tagline}</p>
+				</div>
+			</div>
+		</header>
+
+		<section class="detail-content">
+			<div class="info-card">
+				<h2>About {product.name}</h2>
+				<p class="description">{product.description}</p>
+			</div>
+
+			<div class="features-section">
+				<h2>Key Features</h2>
+				<div class="features-grid">
+					{product.features.map((feature) => (
+						<div class="feature-item">
+							<span class="check">✓</span>
+							<p>{feature}</p>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="action-section">
+				<a href={product.link} target="_blank" rel="noopener noreferrer" class="primary-button">
+					{isFramework ? 'View Documentation' : 'View on GitHub'}
+				</a>
+			</div>
+		</section>
+
+		<footer>
+			<p>&copy; 2026 SSBun (Silas). All rights reserved.</p>
+		</footer>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 2rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+	}
+	.breadcrumb {
+		margin-bottom: 2rem;
+	}
+	.breadcrumb a {
+		color: #aaa;
+		text-decoration: none;
+		font-size: 0.9rem;
+		transition: color 0.2s;
+	}
+	.breadcrumb a:hover {
+		color: rgb(var(--accent-light));
+	}
+	.detail-header {
+		padding: 3rem;
+		background: #23262d;
+		border-radius: 24px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		margin-bottom: 2rem;
+	}
+	.detail-header.framework {
+		border-left: 6px solid #4f46e5;
+		background: linear-gradient(145deg, #1a1c23, #23262d);
+	}
+	.header-content {
+		display: flex;
+		gap: 2.5rem;
+		align-items: center;
+	}
+	.icon-large {
+		font-size: 6rem;
+		line-height: 1;
+	}
+	.badge-row {
+		display: flex;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+	.type-badge, .category-badge {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		padding: 0.25rem 0.75rem;
+		border-radius: 6px;
+		font-weight: 700;
+	}
+	.app .type-badge {
+		background: rgba(16, 185, 129, 0.1);
+		color: #10b981;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+	}
+	.framework .type-badge {
+		background: rgba(79, 70, 229, 0.1);
+		color: #818cf8;
+		border: 1px solid rgba(79, 70, 229, 0.2);
+	}
+	.category-badge {
+		background: rgba(255, 255, 255, 0.05);
+		color: #aaa;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	h1 {
+		font-size: 3.5rem;
+		margin: 0;
+		line-height: 1.1;
+	}
+	.tagline {
+		font-size: 1.25rem;
+		color: rgb(var(--accent-light));
+		margin-top: 0.5rem;
+		font-weight: 500;
+	}
+	.detail-content {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+	.info-card, .features-section {
+		background: rgba(255, 255, 255, 0.02);
+		padding: 2rem;
+		border-radius: 20px;
+		border: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	h2 {
+		font-size: 1.5rem;
+		margin-top: 0;
+		margin-bottom: 1.5rem;
+		color: #fff;
+	}
+	.description {
+		color: #ccc;
+		line-height: 1.8;
+		font-size: 1.1rem;
+	}
+	.features-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+	}
+	.feature-item {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+	}
+	.check {
+		color: rgb(var(--accent-light));
+		font-weight: bold;
+		font-size: 1.2rem;
+	}
+	.feature-item p {
+		margin: 0;
+		color: #aaa;
+		font-size: 1rem;
+	}
+	.action-section {
+		text-align: center;
+		margin-top: 2rem;
+	}
+	.primary-button {
+		display: inline-block;
+		background: white;
+		color: #13151a;
+		padding: 1rem 2.5rem;
+		border-radius: 12px;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 1.1rem;
+		transition: all 0.2s;
+	}
+	.primary-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+		background: rgb(var(--accent-light));
+	}
+	footer {
+		margin-top: 4rem;
+		text-align: center;
+		font-size: 0.9rem;
+		color: #666;
+	}
+	@media (max-width: 768px) {
+		.header-content {
+			flex-direction: column;
+			text-align: center;
+			gap: 1.5rem;
+		}
+		h1 {
+			font-size: 2.5rem;
+		}
+		.features-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
