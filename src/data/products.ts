@@ -75,13 +75,6 @@ export const products: Product[] = [
       "Concise: Automatically remove fluff and unnecessary words from your writing",
       "Local AI: Use with LM Studio or Ollama for private, offline text refinement"
     ],
-    gallery: [
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/SSBun/SeaCrab/main/SeaCrab/Assets.xcassets/appIcon.png',
-        caption: 'SeaCrab Icon'
-      }
-    ],
     link: "https://github.com/SSBun/SeaCrab",
     category: "AI Tool",
     type: 'app'
@@ -209,6 +202,13 @@ export const products: Product[] = [
       "Type-safe configuration",
       "Extensible architecture",
       "Lightweight footprint"
+    ],
+    gallery: [
+      {
+        type: 'image',
+        url: 'https://ssbun-lot.oss-cn-beijing.aliyuncs.com/img/202602041154467.png',
+        caption: 'OctopusTool Website'
+      }
     ],
     link: "https://ssbun.github.io/OctopusTool/",
     category: "TS Utility",
