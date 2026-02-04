@@ -11,6 +11,11 @@ export interface Product {
   longDescription?: string;
   systemRequirements?: string[];
   useCases?: string[];
+  gallery?: {
+    type: 'image' | 'video';
+    url: string;
+    caption?: string;
+  }[];
 }
 
 export const products: Product[] = [
@@ -36,6 +41,13 @@ export const products: Product[] = [
       "Developers: save technical documentation, code snippets, and tool links",
       "Researchers: organize research papers, notes, and data sources",
       "Content Creators: gather references and inspiration for new projects"
+    ],
+    gallery: [
+      {
+        type: 'image',
+        url: 'https://raw.githubusercontent.com/SSBun/Seahorse/main/snapshot.png',
+        caption: 'Seahorse Main Interface'
+      }
     ],
     link: "https://github.com/SSBun/Seahorse",
     category: "Productivity",
@@ -63,6 +75,13 @@ export const products: Product[] = [
       "Concise: Automatically remove fluff and unnecessary words from your writing",
       "Local AI: Use with LM Studio or Ollama for private, offline text refinement"
     ],
+    gallery: [
+      {
+        type: 'image',
+        url: 'https://raw.githubusercontent.com/SSBun/SeaCrab/main/SeaCrab/Assets.xcassets/appIcon.png',
+        caption: 'SeaCrab Icon'
+      }
+    ],
     link: "https://github.com/SSBun/SeaCrab",
     category: "AI Tool",
     type: 'app'
@@ -88,6 +107,13 @@ export const products: Product[] = [
       "Project organization: group related folders into logical workspaces",
       "Quick access: maintain a list of your most-used workspaces for instant launching"
     ],
+    gallery: [
+      {
+        type: 'image',
+        url: 'https://raw.githubusercontent.com/SSBun/Shark/main/resources/screen.png',
+        caption: 'Shark Workspace Management'
+      }
+    ],
     link: "https://github.com/SSBun/Shark",
     category: "Developer Tool",
     type: 'app'
@@ -112,6 +138,13 @@ export const products: Product[] = [
       "Cost Monitoring: prevent unexpected bills by tracking AI usage in real-time",
       "Usage Analysis: understand which AI providers you use most frequently",
       "Budgeting: set limits and monitor spending across different AI services"
+    ],
+    gallery: [
+      {
+        type: 'image',
+        url: 'https://github.com/user-attachments/assets/8d95140b-b559-4f08-aee0-6a8245cf52b5',
+        caption: 'AiCash Dashboard'
+      }
     ],
     link: "https://github.com/SSBun/AiCash",
     category: "Finance/AI",

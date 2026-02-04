@@ -34,6 +34,24 @@ const isFramework = product.type === 'framework';
 		</header>
 
 		<section class="detail-content">
+			{product.gallery && product.gallery.length > 0 && (
+				<div class="gallery-section">
+					<h2>Snapshot Gallery</h2>
+					<div class="gallery-grid">
+						{product.gallery.map((item) => (
+							<div class="gallery-item">
+								{item.type === 'image' ? (
+									<img src={item.url} alt={item.caption || product.name} class="gallery-media" />
+								) : (
+									<video src={item.url} controls class="gallery-media" />
+								)}
+								{item.caption && <p class="caption">{item.caption}</p>}
+							</div>
+						))}
+					</div>
+				</div>
+			)}
+
 			<div class="info-card">
 				<h2>About {product.name}</h2>
 				<p class="description">{product.longDescription || product.description}</p>
@@ -170,11 +188,37 @@ const isFramework = product.type === 'framework';
 		flex-direction: column;
 		gap: 2rem;
 	}
-	.info-card, .features-section, .use-cases-section, .requirements-section {
+	.info-card, .features-section, .use-cases-section, .requirements-section, .gallery-section {
 		background: rgba(255, 255, 255, 0.02);
 		padding: 2rem;
 		border-radius: 20px;
 		border: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	.gallery-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+	.gallery-item {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.gallery-media {
+		width: 100%;
+		border-radius: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+		transition: transform 0.3s ease;
+	}
+	.gallery-media:hover {
+		transform: scale(1.02);
+	}
+	.caption {
+		font-size: 0.9rem;
+		color: #888;
+		text-align: center;
+		margin: 0;
 	}
 	h2 {
 		font-size: 1.5rem;
