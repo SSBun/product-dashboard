@@ -1,0 +1,175 @@
+---
+import type { Product } from '../data/products';
+
+interface Props {
+	product: Product;
+}
+
+const { product } = Astro.props;
+const isFramework = product.type === 'framework';
+---
+
+<div class={`product-card ${isFramework ? 'framework' : 'app'}`}>
+	<div class="icon">{product.icon}</div>
+	<div class="content">
+		<div class="header-row">
+			<h2>{product.name}</h2>
+			<span class="type-badge">{isFramework ? 'Framework' : 'App'}</span>
+		</div>
+		<p class="tagline">{product.tagline}</p>
+		<p class="description">{product.description}</p>
+		<ul class="features">
+			{product.features.map((feature) => (
+				<li>{feature}</li>
+			))}
+		</ul>
+		<div class="footer-row">
+			<span class="category">{product.category}</span>
+			<a href={product.link} target="_blank" rel="noopener noreferrer" class="link">
+				{isFramework ? 'View Documentation' : 'View on GitHub'} &rarr;
+			</a>
+		</div>
+	</div>
+</div>
+
+<style>
+	.product-card {
+		background: #23262d;
+		border-radius: 16px;
+		padding: 2rem;
+		display: flex;
+		gap: 2rem;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		position: relative;
+		overflow: hidden;
+	}
+	.product-card.framework {
+		background: linear-gradient(145deg, #1a1c23, #23262d);
+		border-left: 4px solid #4f46e5;
+	}
+	.product-card:hover {
+		transform: translateY(-4px) scale(1.01);
+		border-color: rgba(255, 255, 255, 0.2);
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+	}
+	.icon {
+		font-size: 4rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 100px;
+		background: rgba(255, 255, 255, 0.03);
+		border-radius: 12px;
+	}
+	.content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.header-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.8rem;
+		font-weight: 700;
+	}
+	.type-badge {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		padding: 0.2rem 0.6rem;
+		border-radius: 6px;
+		font-weight: 600;
+	}
+	.app .type-badge {
+		background: rgba(16, 185, 129, 0.1);
+		color: #10b981;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+	}
+	.framework .type-badge {
+		background: rgba(79, 70, 229, 0.1);
+		color: #818cf8;
+		border: 1px solid rgba(79, 70, 229, 0.2);
+	}
+	.tagline {
+		font-weight: 600;
+		color: rgb(var(--accent-light));
+		margin-bottom: 0.75rem;
+		font-size: 1.1rem;
+	}
+	.description {
+		color: #9ca3af;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+		font-size: 0.95rem;
+	}
+	.features {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem 0;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem;
+	}
+	.features li {
+		color: #d1d5db;
+		font-size: 0.85rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.features li::before {
+		content: "→";
+		color: rgb(var(--accent-light));
+		font-weight: bold;
+	}
+	.footer-row {
+		margin-top: auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	.category {
+		font-size: 0.85rem;
+		color: #6b7280;
+		font-style: italic;
+	}
+	.link {
+		color: white;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 0.95rem;
+		transition: color 0.2s;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+	.link:hover {
+		color: rgb(var(--accent-light));
+	}
+	@media (max-width: 768px) {
+		.product-card {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+		.icon {
+			min-width: auto;
+			padding: 1rem;
+		}
+		.features {
+			grid-template-columns: 1fr;
+		}
+		.footer-row {
+			flex-direction: column;
+			gap: 1rem;
+			align-items: flex-start;
+		}
+	}
+</style>
